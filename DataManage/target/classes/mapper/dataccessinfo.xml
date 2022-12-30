@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 是标明mapper位置的-->
+<mapper namespace="com.jyh.mapper.DataaccesssinfoMapper">
+
+<!--    只写Insert插入即可,parameterType是写 类名的 entity,insertid是写插入功能函数的名字-->
+    <insert id="insertDataaccessinfo" parameterType="com.jyh.entity.Dataaccessinfo">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into dataaccessinfo(sourceinfoid,sourcedb,sourcetable,extractType,targetinfoid,targetdb,targetable,createtime) values(#{sourceinfoid},#{sourcedb},#{sourcetable},#{extractType},#{targetinfoid},#{targetdb},#{targetable},#{createtime})
+    </insert>
+</mapper>
+

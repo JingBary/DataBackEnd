@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 是标明mapper位置的-->
+<mapper namespace="com.jyh.mapper.DatasourceinfoMapper">
+
+<!--    只写Insert插入即可,parameterType是写 类名的 entity,insertid是写插入功能函数的名字-->
+    <insert id="insertDatasourceinfo" parameterType="com.jyh.entity.Datasourceinfo">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into datasourceinfo(dname,dtype,username,userpassw,dadress) values(#{dname},#{dtype},#{username},#{userpassw},#{dadress})
+    </insert>
+
+    <select id="findbyType" parameterType="com.jyh.entity.Datasourceinfo" resultType="com.jyh.entity.Datasourceinfo">
+        select * from datasourceinfo where dtype=#{dtype}
+    </select>
+
+    <select id="findAll"  resultType="com.jyh.entity.Datasourceinfo">
+        select * from datasourceinfo
+    </select>
+    <!--mybatis会自己去传入的参数找id的实际值，where id=#{id}中的第二个id就是传进来的跟其他无关    -->
+    <select id="findById"  parameterType="java.lang.Integer" resultType="com.jyh.entity.Datasourceinfo">
+        select * from datasourceinfo where id=#{id};
+    </select>
+</mapper>
